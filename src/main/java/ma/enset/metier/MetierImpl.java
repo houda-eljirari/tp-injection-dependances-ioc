@@ -1,19 +1,21 @@
 package ma.enset.metier;
 
+import ma.enset.dao.DaoImpl;
 import ma.enset.dao.IDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MetierImpl implements IMetier {
 
-    private IDao dao;  // Couplage faible (interface)
-
-    // Injection via Setter
-    public void setDao(IDao dao) {
-        this.dao = dao;
-    }
+    @Autowired
+    private IDao dao;
 
     @Override
     public double calcul() {
-        double data = dao.getData();
-        return data * 10;
+        return dao.getData() * 10;
+    }
+
+    public void setDao(DaoImpl dao) {
     }
 }
